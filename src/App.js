@@ -259,7 +259,8 @@ const imagesList = [
 let shuffledImagesList = imagesList
 
 // const timerId = null
-let timerId2 = null
+let timerId = null
+
 class App extends Component {
   state = {
     score: 0,
@@ -268,11 +269,17 @@ class App extends Component {
     isGameOver: false,
   }
 
-  timerId = setInterval(() => {
-    const {timer} = this.state
+  componentDidMount() {
+    this.setTimer()
+  }
 
-    this.setState({timer: timer - 1})
-  }, 1000)
+  setTimer = () => {
+    timerId = setInterval(() => {
+      const {timer} = this.state
+
+      this.setState({timer: timer - 1})
+    }, 1000)
+  }
 
   onClickTabId = tabId => {
     this.setState({activeTab: tabId})
@@ -295,17 +302,7 @@ class App extends Component {
   renderWinnerCardView = () => {
     const {score} = this.state
 
-    clearInterval(this.timerId)
-
-    clearInterval(timerId2)
-
-    // clearInterval(timerId2)
-
-    // console.log('timer ending logged in renderWinnerCard method')
-
-    // if (timer === 0) {
-    //   clearInterval(this.timerId)
-    // }
+    clearInterval(timerId)
 
     return (
       <div className="winner-card-container">
@@ -383,11 +380,13 @@ class App extends Component {
       isGameOver: false,
       activeTab: tabsList[0].tabId,
     })
-    timerId2 = setInterval(() => {
-      const {timer} = this.state
 
-      this.setState({timer: timer - 1})
-    }, 1000)
+    this.setTimer()
+    // timerId2 = setInterval(() => {
+    //   const {timer} = this.state
+
+    //   this.setState({timer: timer - 1})
+    // }, 1000)
   }
 
   render() {

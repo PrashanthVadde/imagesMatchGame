@@ -13,6 +13,8 @@
   justify-content: space-between;
   align-items: center;
   width: 70%;
+
+  list-style-type: none;
 }
 
 .web-logo-styles {
@@ -32,6 +34,7 @@
   font-family: 'Roboto';
   font-size: 18px;
   font-weight: 500;
+  margin-left: 160px;
 }
 
 .digital-score {
